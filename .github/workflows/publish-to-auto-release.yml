@@ -16,10 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: "macos-latest" # for Arm based macs (M1 and above).
-            args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest" # for Intel based macs.
-            args: "--target x86_64-apple-darwin"
+          - platform: "macos-latest" # for Universal macOS builds (arm64 and x86_64)
+            args: '--target universal-apple-darwin'
           - platform: "windows-latest"
             args: ""
 
@@ -37,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
-          releaseName: "App v__VERSION__"
+          tagName: __VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
+          releaseName: "__VERSION__"
           releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
